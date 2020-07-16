@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\StoreCardRequest;
 class CardController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        dd("hello index");
     }
 
     /**
@@ -24,7 +24,11 @@ class CardController extends Controller
      */
     public function create()
     {
-        //
+        $suits = ['Hearts','Spades','Diamonds', 'Clubs'];
+        $ranks = array_merge(range("2", "10"), ['Jack', 'Queen', 'King', 'Ace']); 
+        return view("card.create", 
+        ['suits' => $suits,
+         'ranks' => $ranks]);
     }
 
     /**
@@ -33,53 +37,12 @@ class CardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCardRequest $request)
     {
-        //
+        $card = Card::where(['suit'=>$request->suit,'rank'=>$request->rank])->first();
+        $request->session()->put('card', $card);
+        return redirect()->route('cards.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Card  $card
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Card $card)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Card  $card
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Card $card)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Card  $card
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Card $card)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Card  $card
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Card $card)
-    {
-        //
-    }
 }

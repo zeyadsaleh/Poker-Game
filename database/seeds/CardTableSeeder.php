@@ -12,8 +12,8 @@ class CardTableSeeder extends Seeder
      */
     public function run()
     {
-        $suits = ['H','S','C','H'];
-        $ranks =array_merge(['J','Q','K','A'], range("2", "10"));
+        $suits = ['H','S','D','C'];
+        $ranks =array_merge( range("2", "10"), ['J','Q','K','A']);
         foreach ($suits as $suit) {
             foreach ($ranks as $rank) {
                 Card::create([

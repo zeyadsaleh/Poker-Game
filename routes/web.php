@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+Route::get('/', function () { 
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/cards', 'CardController@index')->name('cards.index');
+Route::get('/cards/create', 'CardController@create')->name('cards.create');
+Route::post('/cards', 'CardController@store')->name('cards.store');
