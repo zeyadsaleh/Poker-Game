@@ -17,6 +17,6 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::post('/draft', 'CardController@index')->name('cards.draft');
-Route::get('/cards', 'CardController@index')->name('cards.index');
+Route::get('/cards', 'CardController@index')->name('cards.index')->middleware('checkCard');
 Route::get('/cards/create', 'CardController@create')->name('cards.create');
 Route::post('/cards', 'CardController@store')->name('cards.store');

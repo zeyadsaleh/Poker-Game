@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Card;
+use App\Card; 
 use App\Services\GameServiceInterface;
 use Illuminate\Support\Facades\DB;
 

@@ -38,7 +38,7 @@
     </div>
 </div>
 @endisset
-@if (Session::get('Wins') == false)
+@if (Session::get('Wins') == false) 
     <div class=" text-center border m-2 border-dark">
         <h3>Your chance of getting it</h3>
         <p>{{$percentage}} % </p>
